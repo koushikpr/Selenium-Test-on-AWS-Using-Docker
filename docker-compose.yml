@@ -2,32 +2,107 @@ version: '3.7'
 services:
   node1:
     build: .
-    command: python -u script.py "mongo-db" "${PAGENO}"
+    command: python -u script.py "mongo-db" "1"
     ports:
-      - 5000:5000
+      - 5001:5001
     volumes:
       - .:/todo 
     links:
       - db
-    env_file:
-      - variables.env
+
+  node2:
+    build: .
+    command: python -u script.py "mongo-db" "2"
+    ports:
+      - 5002:5002
+    volumes:
+      - .:/todo 
+    links:
+      - db
+
+  node3:
+    build: .
+    command: python -u script.py "mongo-db" "3"
+    ports:
+      - 5003:5003
+    volumes:
+      - .:/todo 
+    links:
+      - db
+
+  node4:
+    build: .
+    command: python -u script.py "mongo-db" "4"
+    ports:
+      - 5004:5004
+    volumes:
+      - .:/todo 
+    links:
+      - db
+
+  node5:
+    build: .
+    command: python -u script.py "mongo-db" "5"
+    ports:
+      - 5006:5006
+    volumes:
+      - .:/todo 
+    links:
+      - db
+
+  node6:
+    build: .
+    command: python -u script.py "mongo-db" "6"
+    ports:
+      - 5007:5007
+    volumes:
+      - .:/todo 
+    links:
+      - db
+
+  node7:
+    build: .
+    command: python -u script.py "mongo-db" "7"
+    ports:
+      - 5008:5008
+    volumes:
+      - .:/todo 
+    links:
+      - db
+
+  node8:
+    build: .
+    command: python -u script.py "mongo-db" "8"
+    ports:
+      - 5009:5009
+    volumes:
+      - .:/todo 
+    links:
+      - db
+
+  node9:
+    build: .
+    command: python -u script.py "mongo-db" "9"
+    ports:
+      - 5005:5005
+    volumes:
+      - .:/todo 
+    links:
+      - db
+
+  node10:
+    build: .
+    command: python -u script.py "mongo-db" "10"
+    ports:
+      - 5010:5010
+    volumes:
+      - .:/todo 
+    links:
+      - db
 
   db:
     image: mongo:latest
     hostname: mongo-db
     ports:
       - 27017:27017
-  
-  selenium:
-    image: selenium/hub
-    hostname: selenium/hub
-    ports:
-      - 4446:4444
-
-  selenium_chrome:
-    image: selenium/node-chrome-debug
-    links:
-      - selenium/hub
-
-
 
