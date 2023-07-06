@@ -9,6 +9,7 @@ services:
       - .:/todo 
     links:
       - db
+      - selenium
 
   node2:
     build: .
@@ -19,6 +20,7 @@ services:
       - .:/todo 
     links:
       - db
+      - selenium
 
   node3:
     build: .
@@ -29,6 +31,7 @@ services:
       - .:/todo 
     links:
       - db
+      - selenium
 
   node4:
     build: .
@@ -39,6 +42,7 @@ services:
       - .:/todo 
     links:
       - db
+      - selenium
 
   node5:
     build: .
@@ -49,6 +53,7 @@ services:
       - .:/todo 
     links:
       - db
+      - selenium
 
   node6:
     build: .
@@ -59,6 +64,7 @@ services:
       - .:/todo 
     links:
       - db
+      - selenium
 
   node7:
     build: .
@@ -69,6 +75,7 @@ services:
       - .:/todo 
     links:
       - db
+      - selenium
 
   node8:
     build: .
@@ -79,6 +86,7 @@ services:
       - .:/todo 
     links:
       - db
+      - selenium
 
   node9:
     build: .
@@ -89,6 +97,7 @@ services:
       - .:/todo 
     links:
       - db
+      - selenium
 
   node10:
     build: .
@@ -99,10 +108,19 @@ services:
       - .:/todo 
     links:
       - db
+      - selenium
 
   db:
     image: mongo:latest
     hostname: mongo-db
     ports:
       - 27017:27017
+  
+  selenium:
+    image: selenium/standalone-chrome
+    hostname: selenium
+    ports:
+      - 4444:4444
+    volumes:
+      - /dev/shm:/dev/shm
 

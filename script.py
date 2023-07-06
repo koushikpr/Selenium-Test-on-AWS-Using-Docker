@@ -14,7 +14,7 @@ chrome_options.add_argument("--disable-gpu")
 chrome_options.add_argument("--headless")
 
 # Add your Selenium IP Here
-driver = webdriver.Remote(options=chrome_options,command_executor="http://localhost:4444/wd/hub")
+driver = webdriver.Remote(options=chrome_options,command_executor="http://selenium:4444/wd/hub")
 driver.get(pages)
 client = MongoClient(host=host, port=27017)
 db = client['mcs_assignment']
