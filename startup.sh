@@ -19,12 +19,6 @@ chmod +x /usr/local/bin/docker-compose
 
 # Chrome on EC2
 
-curl https://intoli.com/install-google-chrome.sh | bash
-
-sudo mv /usr/bin/google-chrome-stable /usr/bin/google-chrome
-
-google-chrome — version && which google-chrome
-
 wget https://chromedriver.storage.googleapis.com/80.0.3987.106/chromedriver_linux64.zip
 
 unzip chromedriver_linux64.zip
@@ -36,4 +30,15 @@ chromedriver — version
 git clone https://github.com/koushikpr/Selenium-Test-on-AWS-Using-Docker
 
 # Run the files
+
+systemctl start docker
+
+docker pull selenium/standalone-chrome
+docker run -d -p 4444:4444 -v /dev/shm:/dev/shm selenium/standalone-chrome
+
+cd Selenium-Test-on-AWS-Using-Docker
+
 docker-compose up
+
+
+

@@ -12,7 +12,9 @@ pages = "http://quotes.toscrape.com/page/" + sys.argv[2]+ "/"
 
 chrome_options.add_argument("--disable-gpu")
 chrome_options.add_argument("--headless")
-driver = webdriver.Chrome(options=chrome_options)
+
+# Add your Selenium IP Here
+driver = webdriver.Remote(options=chrome_options,command_executor="http://localhost:4444/wd/hub")
 driver.get(pages)
 client = MongoClient(host=host, port=27017)
 db = client['mcs_assignment']
