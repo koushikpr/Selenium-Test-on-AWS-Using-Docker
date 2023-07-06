@@ -8,15 +8,16 @@ chrome_options = Options()
 
 host = sys.argv[1]
 
+pages = "http://quotes.toscrape.com/page/" + sys.argv[2]+ "/"
+
 chrome_options.add_argument("--disable-gpu")
 chrome_options.add_argument("--headless")
 driver = webdriver.Chrome(options=chrome_options)
-driver.get("http://quotes.toscrape.com")
+driver.get(pages)
 client = MongoClient(host=host, port=27017)
 db = client['mcs_assignment']
 collection = db['quotes']
-for page in range(10):
-    for i in range(1, 11):
+for i in range(1, 11):
         quote_xpath = f"/html/body/div[1]/div[2]/div[1]/div[{i}]/span[1]"
         author_xpath = f"/html/body/div[1]/div[2]/div[1]/div[{i}]/span[2]/small"
         quote_element = driver.find_element(By.XPATH, quote_xpath)
@@ -27,15 +28,11 @@ for page in range(10):
         print("Author:", author_name)
         print()
         document = {
-        'quote_id': page * 10 + i,
+        'quote_id': int(sys.argv[2]) * 10 + i,
         'quote': quote_text,
         'author': author_name
         }
         collection.insert_one(document)
-    try:
-        next_button = driver.find_element(By.XPATH, "//li[@class='next']/a")
-        next_button.click()
-    except:
-        print("No more pages available. Exiting loop.")
-    break
+
+
 driver.quit()

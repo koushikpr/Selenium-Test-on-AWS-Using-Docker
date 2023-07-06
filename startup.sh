@@ -1,8 +1,5 @@
 #!/bin/bash
 
-
-
-
 yum update –y
 
 # Install Git
@@ -12,7 +9,6 @@ yum install git
 # Install Docker
 
 yum install docker
-
 systemctl enable docker
 
 # Install Docker-Compose
@@ -37,9 +33,7 @@ sudo mv chromedriver /usr/bin/chromedriver
 
 chromedriver — version
 
-git clone https://github.com/
-
+git clone https://github.com/koushikpr/Selenium-Test-on-AWS-Using-Docker
 
 # Run the files
-
 docker-compose up

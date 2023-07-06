@@ -1,8 +1,8 @@
 version: '3.7'
 services:
-  apiv4:
+  node1:
     build: .
-    command: python -u script.py "mongo-db"
+    command: python -u script.py "mongo-db" "1"
     ports:
       - 5000:5000
     volumes:
