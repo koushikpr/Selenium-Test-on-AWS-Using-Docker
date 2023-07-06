@@ -2,16 +2,32 @@ version: '3.7'
 services:
   node1:
     build: .
-    command: python -u script.py "mongo-db" "1"
+    command: python -u script.py "mongo-db" "${PAGENO}"
     ports:
       - 5000:5000
     volumes:
       - .:/todo 
     links:
       - db
+    env_file:
+      - variables.env
 
   db:
     image: mongo:latest
     hostname: mongo-db
     ports:
       - 27017:27017
+  
+  selenium:
+    image: selenium/hub
+    hostname: selenium/hub
+    ports:
+      - 4446:4444
+
+  selenium_chrome:
+    image: selenium/node-chrome-debug
+    links:
+      - selenium/hub
+
+
+
